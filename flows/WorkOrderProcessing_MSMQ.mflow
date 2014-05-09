@@ -3,37 +3,19 @@
     <global-element name="MSMQ" type="http://www.mulesoft.org/schema/mule/msmq/config" entity-id="MSMQ#1">
         <properties>
             <property name="username" value="MuleMSMQ"/>
-            <property name="updated"/>
             <property name="name" value="MSMQ_WorkOrders"/>
             <property name="serviceUrl" value="http://localhost:9000/"/>
             <property name="password" value="123Pa$$word321"/>
             <property name="auxiliary;index" value="1"/>
-            <property name="impersonateUser" value="false"/>
-            <property-collection name="">
-                <property name="blocking" value="true"/>
-                <property name="d" value=""/>
-                <property name="customReconnection" value="false"/>
-                <property name="count" value="2"/>
-                <property name="standardReconnection" value="false"/>
-                <property name="class" value=""/>
-                <property name="frequency" value="2000"/>
-                <property name="reconnectForever" value="false"/>
-                <property name="noReconnection" value="true"/>
-            </property-collection>
-            <property-collection name="@http://www.mulesoft.org/schema/mule/msmq/connection-pooling-profile;2110203426">
+            <property name="impersonateUser"/>
+            <property-collection name="@http://www.mulesoft.org/schema/mule/msmq/connection-pooling-profile;0">
                 <property name="exhaustedAction" value="WHEN_EXHAUSTED_GROW"/>
-                <property name="maxActive" value="5"/>
-                <property name="maxIdle" value="5"/>
-                <property name="poolingProfileLabel" value=""/>
-                <property name="evictionCheckIntervalMillis" value="-1"/>
-                <property name="maxWait" value="5"/>
-                <property name="minEvictionMillis" value="1800000"/>
                 <property name="isProcessed$$$$ " value="true"/>
                 <property name="auxiliary;index" value="2"/>
+                <property name="auxiliary;wrapIn" value="2"/>
                 <property name="initialisationPolicy" value="INITIALISE_ONE"/>
             </property-collection>
         </properties>
-        <description></description>
     </global-element>
     <global-element name="pojo_to_pojo" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/config" entity-id="DataMapper#1">
         <properties>
@@ -56,7 +38,7 @@
             <property name="transformationGraphPath" value="xml_to_pojo.grf"/>
         </properties>
     </global-element>
-    <flow SubFlow="false" name="WorkOrderProcessing_ReceiveWorkOrderRequest" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="0c6fcd39-4269-4fb0-9d9f-c80c06e9eeda">
+    <flow SubFlow="false" name="WorkOrderProcessing_ReceiveWorkOrderRequest" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="6250a2e8-43e2-4c63-a4ac-377c752a281b">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -185,7 +167,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="WorkOrderProcessing_SendToMSMQ" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="d4117ee0-04fe-4991-b54e-dc69a3c56cbb">
+    <flow SubFlow="false" name="WorkOrderProcessing_SendToMSMQ" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="d636771d-3ff8-48d1-9f10-6b11d98c3ba6">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2" value="synchronous"/>
@@ -197,7 +179,7 @@
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#2">
             <graphicalData x="0" y="0" width="0" height="0"/>
             <pattern name="Logger" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#1">
-                <graphicalData x="0" y="0" width="0" height="0"/>
+                <graphicalData x="21" y="270" width="68" height="69"/>
                 <properties>
                     <property name="message" value="Before Queue #[message.payload]"/>
                     <property name="category"/>
@@ -206,7 +188,7 @@
                 </properties>
             </pattern>
             <pattern name="MSMQ" type="http://www.mulesoft.org/schema/mule/msmq/msmq-connector" entity-id="MSMQ#2">
-                <graphicalData x="0" y="0" width="0" height="0"/>
+                <graphicalData x="149" y="270" width="68" height="69"/>
                 <properties>
                     <property name=""/>
                     <property name="username"/>
@@ -218,11 +200,10 @@
                     <property name="auxiliary;index" value="19"/>
                     <property name="impersonateUser"/>
                 </properties>
-                <description></description>
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="WorkOrderProcessing_ReceiveCompletedWorkOrder" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="35f527d7-e08e-49b7-a0e3-f4d2395804bc">
+    <flow SubFlow="false" name="WorkOrderProcessing_ReceiveCompletedWorkOrder" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="30a9a512-415c-4f3e-af61-1115261484d9">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
