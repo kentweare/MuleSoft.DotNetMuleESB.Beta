@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><Graph author="kent.weare" created="Mon May 05 09:30:11 MDT 2014" description="XML To Pojo" guiVersion="3.4.3.P" id="1399305049097" licenseCode="Unlicensed" licenseType="Unknown" modified="Mon May 05 09:30:11 MDT 2014" modifiedBy="kent.weare" name="XML_To_Pojo" revision="1.0" showComponentDetails="false">
+<Global>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/object" _dataStructure="OBJECT" _id="__id" _type="Output" id="898112d9-5662-449d-9328-e3e8f55d8139">
+<Record fieldDelimiter="," name="WorkOrderCompleteRequest" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{}/object/comments" containerType="SINGLE" label="comments" name="comments" type="string"/>
+<Field __index="1" __sourcePath="{}/object/hours" containerType="SINGLE" label="hours" name="hours" type="integer"/>
+<Field __index="2" __sourcePath="{}/object/isSuccessful" containerType="SINGLE" label="isSuccessful" name="isSuccessful" type="boolean"/>
+<Field __index="3" __sourcePath="{}/object/workOrderID" containerType="SINGLE" label="workOrderID" name="workOrderID" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{http://com.mulesoft.samples.WorkOrderCompletionRequest=ns0}/ns0:WorkOrderCompletionRequests" _dataStructure="OBJECT" _id="__id" _type="Input" id="bbd842fa-5696-4f8b-a5f4-510c8870350c">
+<Record fieldDelimiter="," name="WorkOrderCompletionRequests" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{http://com.mulesoft.samples.WorkOrderCompletionRequest=ns0}/ns0:WorkOrderCompletionRequests/WorkOrderCompletionRequest/WorkOrderId" containerType="SINGLE" label="WorkOrderId" name="WorkOrderId" type="string"/>
+<Field __index="1" __sourcePath="{http://com.mulesoft.samples.WorkOrderCompletionRequest=ns0}/ns0:WorkOrderCompletionRequests/WorkOrderCompletionRequest/Hours" containerType="SINGLE" label="Hours" name="Hours" type="integer"/>
+<Field __index="2" __sourcePath="{http://com.mulesoft.samples.WorkOrderCompletionRequest=ns0}/ns0:WorkOrderCompletionRequests/WorkOrderCompletionRequest/IsSuccessful" containerType="SINGLE" label="IsSuccessful" name="IsSuccessful" type="boolean"/>
+<Field __index="3" __sourcePath="{http://com.mulesoft.samples.WorkOrderCompletionRequest=ns0}/ns0:WorkOrderCompletionRequests/WorkOrderCompletionRequest/Comments" containerType="SINGLE" label="Comments" name="Comments" type="string"/>
+</Record>
+</Metadata>
+<Dictionary>
+<Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
+<Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
+</Dictionary>
+</Global>
+<Phase number="0">
+<Node cacheInMemory="true" enabled="enabled" fileURL="dict:outputPayload" guiName="Pojo WRITER" guiX="900" guiY="20" id="BEAN_WRITER0" type="BEAN_WRITER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<object xmlns:clover="http://www.cloveretl.com/ns/xmlmapping" clover:inPort="0">
+  <comments>$0.comments</comments>
+  <hours>$0.hours</hours>
+  <isSuccessful>$0.isSuccessful</isSuccessful>
+  <workOrderID>$0.workOrderID</workOrderID>
+</object>]]></attr>
+<attr name="_data_format"><![CDATA[JAVA]]></attr>
+<attr name="schema"><![CDATA[<?xml version="1.0" encoding="UTF-8"?><schema-object>
+  <typed-object-ref type-ref="com.mulesoft.samples.WorkOrderCompleteRequest"/>
+  <typed-object type="com.mulesoft.samples.WorkOrderCompleteRequest">
+    <typed-object-ref name="comments" type-ref="java.lang.String"/>
+    <typed-object-ref name="hours" type-ref="int"/>
+    <typed-object-ref name="isSuccessful" type-ref="boolean"/>
+    <typed-object-ref name="workOrderID" type-ref="java.lang.String"/>
+  </typed-object>
+  <typed-object type="int"/>
+  <typed-object type="java.lang.String"/>
+  <typed-object type="boolean"/>
+</schema-object>
+]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Foreach 'ns0:WorkOrderCompletionRequests' -&gt; 'object'" guiX="460" guiY="20" id="FOREACH_NS0_WORK_ORDER_COMPLETION_REQUESTS_OBJECT" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+//END -> DO NOT REMOVE
+output.workOrderID = input.WorkOrderId;
+output.hours = input.Hours;
+output.isSuccessful = input.IsSuccessful;
+output.comments = input.Comments;
+]]></attr>
+</Node>
+<Node charset="UTF-8" enabled="enabled" fileURL="dict:inputPayload" guiName="XML READER" guiX="20" guiY="20" id="XML_READER0" type="XML_READER">
+<attr name="xmlSchemaURL"><![CDATA[C:\MuleStudio\dotNet\WorkOrderCompletionRequest_XML.xsd]]></attr>
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context namespacePaths="ns0=&quot;http://com.mulesoft.samples.WorkOrderCompletionRequest&quot;" outPort="0" sequenceField="__id" xpath="/ns0:WorkOrderCompletionRequests">
+  <Mapping cloverField="WorkOrderId" trim="true" xpath="WorkOrderCompletionRequest/WorkOrderId"/>
+  <Mapping cloverField="Hours" trim="true" xpath="WorkOrderCompletionRequest/Hours"/>
+  <Mapping cloverField="IsSuccessful" trim="true" xpath="WorkOrderCompletionRequest/IsSuccessful"/>
+  <Mapping cloverField="Comments" trim="true" xpath="WorkOrderCompletionRequest/Comments"/>
+</Context>
+]]></attr>
+<attr name="_data_format"><![CDATA[XML]]></attr>
+<attr name="__rootGlobalElementName"><![CDATA[{http://com.mulesoft.samples.WorkOrderCompletionRequest}WorkOrderCompletionRequests]]></attr>
+</Node>
+<Edge debugMode="true" fromNode="FOREACH_NS0_WORK_ORDER_COMPLETION_REQUESTS_OBJECT:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="898112d9-5662-449d-9328-e3e8f55d8139" outPort="Port 0 (out)" toNode="BEAN_WRITER0:0"/>
+<Edge debugMode="true" fromNode="XML_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="bbd842fa-5696-4f8b-a5f4-510c8870350c" outPort="Port 0 (out)" toNode="FOREACH_NS0_WORK_ORDER_COMPLETION_REQUESTS_OBJECT:0"/>
+</Phase>
+</Graph>

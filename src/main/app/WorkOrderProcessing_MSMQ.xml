@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:msmq="http://www.mulesoft.org/schema/mule/msmq" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/current/mule-cxf.xsd
+http://www.mulesoft.org/schema/mule/msmq http://www.mulesoft.org/schema/mule/msmq/1.0/mule-msmq.xsd
+http://www.mulesoft.org/schema/mule/ee/data-mapper http://www.mulesoft.org/schema/mule/ee/data-mapper/current/mule-data-mapper.xsd
+http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd">
+    <msmq:config name="MSMQ_WorkOrders" username="MuleMSMQ" password="9Phoenixsi!ver28" serviceUrl="http://localhost:9000/" doc:name="MSMQ">
+        <msmq:connection-pooling-profile initialisationPolicy="INITIALISE_ONE" exhaustedAction="WHEN_EXHAUSTED_GROW"/>
+    </msmq:config>
+    <data-mapper:config name="pojo_to_pojo" transformationGraphPath="pojo_to_pojo.grf" doc:name="pojo_to_pojo"/>
+    <data-mapper:config name="pojo_to_xml" transformationGraphPath="pojo_to_xml.grf" doc:name="pojo_to_xml"/>
+    <data-mapper:config name="xml_to_pojo" transformationGraphPath="xml_to_pojo.grf" doc:name="xml_to_pojo"/>
+    <flow name="WorkOrderProcessing_ReceiveWorkOrderRequest" doc:name="WorkOrderProcessing_ReceiveWorkOrderRequest">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="ProcessWorkOrder" doc:name="HTTP"/>
+        <cxf:jaxws-service serviceClass="com.mulesoft.samples.IProcessWorkOrder" doc:name="SOAP"/>
+        <set-variable variableName="WorkOrder" value="#[message.payload.workOrderID]" doc:name="Work Order Id"/>
+        <data-mapper:transform config-ref="pojo_to_xml" doc:name="Pojo To XML"/>
+        <flow-ref name="WorkOrderProcessing_SendToMSMQ" doc:name="Flow Reference"/>
+        <set-variable variableName="Status" value="#[true]" doc:name="Status"/>
+        <data-mapper:transform config-ref="pojo_to_pojo" doc:name="Pojo To Pojo">
+            <data-mapper:input-arguments>
+                <data-mapper:input-argument key="WorkOrderID">#[flowVars['WorkOrder']]</data-mapper:input-argument>
+                <data-mapper:input-argument key="status">#[flowVars['status']]</data-mapper:input-argument>
+            </data-mapper:input-arguments>
+        </data-mapper:transform>
+    </flow>
+    <flow name="WorkOrderProcessing_SendToMSMQ" doc:name="WorkOrderProcessing_SendToMSMQ" processingStrategy="synchronous">
+        <logger message="Before Queue #[message.payload]" level="INFO" doc:name="Logger"/>
+        <msmq:send config-ref="MSMQ_WorkOrders" queueAddress="ml-kweare-w7-re\private$\WorkOrdersOutbound" message-ref="#[message.payload]" doc:name="MSMQ"/>
+    </flow>
+    <flow name="WorkOrderProcessing_ReceiveCompletedWorkOrder" doc:name="WorkOrderProcessing_ReceiveCompletedWorkOrder">
+        <msmq:get-message config-ref="MSMQ_WorkOrders" queueAddress=".\private$\WorkOrderInbound" doc:name="MSMQ"/>
+        <logger message="After Queue #[message.payload]" level="INFO" doc:name="Logger"/>
+        <byte-array-to-string-transformer doc:name="Byte Array to String"/>
+        <data-mapper:transform config-ref="xml_to_pojo" doc:name="XML To Pojo"/>
+        <cxf:jaxws-client operation="CompleteWorkOrder" serviceClass="com.mulesoft.samples.IWorkOrderCompletion" port="BasicHttpBinding_IWorkOrderCompletion" doc:name="SOAP"/>
+        <http:outbound-endpoint exchange-pattern="request-response" host="localhost" port="8082" path="WorkOrderCompletion" method="POST" doc:name="HTTP"/>
+    </flow>
+</mule>

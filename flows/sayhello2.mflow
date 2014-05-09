@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="SayHello2">
+    <global-element name="Dot Net Module" type="http://www.mulesoft.org/schema/mule/dotnet/config" entity-id="!!!f540c582-8fa7-4ea8-afe8-ca7e851a85ea">
+        <properties>
+            <property name="assemblyType" value="MuleSoft.DotNet.HelloWorld.SayHelloWorld"/>
+            <property name="name" value="Dot_Net_Module_SayHello"/>
+            <property name="assemblyName" value="MuleSoft.DotNet.HelloWorld"/>
+            <property name="assemblyPath" value="C:\MuleStudio\dotNet\MuleSoft.DotNet.Samples\MuleSoft.DotNet.HelloWorld\bin\Debug\MuleSoft.DotNet.HelloWorld.dll"/>
+        </properties>
+        <description></description>
+    </global-element>
+    <flow SubFlow="false" name="SayHello2Flow1" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="07c88412-4f79-4a7c-b306-67d5f53cfd9d">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="5482359e-fb90-4bd7-840b-557959e3e491">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <endpoint direction="Inbound" message-exchange-pattern="RequestResponse" name="HTTP" type="http://www.mulesoft.org/schema/mule/https/endpoint" entity-id="f6719c5e-96d2-45dd-b615-0270dfe90c1f">
+                <graphicalData x="21" y="31" width="68" height="171"/>
+                <properties>
+                    <property name="port" value="8096"/>
+                    <property name="auxiliary;erased;mimeType" value="true"/>
+                    <property name="contentType" value=""/>
+                    <property name="password" value=""/>
+                    <property name="tracking:enable-default-events" value="false"/>
+                    <property name="exchange-pattern" value="request-response"/>
+                    <property name="updated"/>
+                    <property name="auxiliary;erased;encoding" value="true"/>
+                    <property name="path" value="helloworld"/>
+                    <property name="encoding" value=""/>
+                    <property name="responseTransformer-refs" value=""/>
+                    <property name="mimeType" value=""/>
+                    <property name="responseTimeout" value="10000"/>
+                    <property name="auxiliary;erased;contentType" value="true"/>
+                    <property name="host" value="localhost"/>
+                    <property name="businessEventsLabel" value=""/>
+                    <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/http/endpoint"/>
+                    <property name="keep-alive" value="false"/>
+                    <property name="disableTransportTransformer" value="false"/>
+                    <property name="ref" value=""/>
+                    <property name="transformer-refs" value=""/>
+                    <property name="httpLabel" value=""/>
+                    <property name="address" value=""/>
+                    <property name="user" value=""/>
+                    <property name="connector-ref" value=""/>
+                </properties>
+                <description></description>
+            </endpoint>
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="eb6395a1-ad3b-43dc-bcc6-e22017a6b289">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="updated"/>
+                    <property name="value" value="#[&quot;{\&quot;input\&quot;:\&quot;&quot; + message.inboundProperties[&quot;input&quot;] + &quot;\&quot;}&quot;]"/>
+                </properties>
+                <description></description>
+            </pattern>
+            <pattern name="Dot Net Module" type="http://www.mulesoft.org/schema/mule/dotnet/dotnet-connector" entity-id="52c653d4-0def-4a2f-b2c3-f563894ec978">
+                <graphicalData x="149" y="31" width="99" height="69"/>
+                <properties>
+                    <property name="updated"/>
+                    <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/dotnet/execute"/>
+                    <property name="methodName" value="SayHello"/>
+                    <property name="config-ref" value="Dot_Net_Module_SayHello"/>
+                </properties>
+                <description></description>
+            </pattern>
+        </lane>
+    </flow>
+    <description></description>
+</mule-configuration>

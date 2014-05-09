@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><Graph author="kent.weare" created="Mon May 05 18:10:36 MDT 2014" description="JSON To Pojo" guiVersion="3.4.3.P" id="1399339106522" licenseCode="Unlicensed" licenseType="Unknown" modified="Mon May 05 18:10:36 MDT 2014" modifiedBy="kent.weare" name="JSON_To_Pojo" preview-file="C:/MuleStudio/dotNet/MuleSoft.DotNet.Samples/Sample.json" revision="1.0" showComponentDetails="false">
+<Global>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/object" _dataStructure="OBJECT" _id="__id" _type="Input" id="984a3011-34dc-473a-855a-7360a8d4f701">
+<Record fieldDelimiter="," name="object" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" label="__id" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{}/object/employeeID" containerType="SINGLE" label="employeeID" name="employeeID" type="string"/>
+<Field __index="1" __sourcePath="{}/object/machineID" containerType="SINGLE" label="machineID" name="machineID" type="number"/>
+<Field __index="2" __sourcePath="{}/object/plantName" containerType="SINGLE" label="plantName" name="plantName" type="string"/>
+<Field __index="3" __sourcePath="{}/object/cost" containerType="SINGLE" label="cost" name="cost" type="number"/>
+<Field __index="4" __sourcePath="{}/object/costCenter" containerType="SINGLE" label="costCenter" name="costCenter" type="string"/>
+<Field __index="5" __sourcePath="{}/object/department" containerType="SINGLE" label="department" name="department" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/object" _dataStructure="OBJECT" _id="__id" _type="Output" id="536a0f25-0cf3-4de6-a93e-f239c4b6ef78">
+<Record fieldDelimiter="," name="TimeSheetForGL" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{}/object/cost" containerType="SINGLE" label="cost" name="cost" type="number"/>
+<Field __index="1" __sourcePath="{}/object/costCenter" containerType="SINGLE" label="costCenter" name="costCenter" type="string"/>
+<Field __index="2" __sourcePath="{}/object/department" containerType="SINGLE" label="department" name="department" type="string"/>
+<Field __index="3" __sourcePath="{}/object/employeeID" containerType="SINGLE" label="employeeID" name="employeeID" type="string"/>
+<Field __index="4" __sourcePath="{}/object/machineID" containerType="SINGLE" label="machineID" name="machineID" type="integer"/>
+<Field __index="5" __sourcePath="{}/object/plantName" containerType="SINGLE" label="plantName" name="plantName" type="string"/>
+</Record>
+</Metadata>
+<Dictionary>
+<Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
+<Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
+</Dictionary>
+</Global>
+<Phase number="0">
+<Node cacheInMemory="true" enabled="enabled" fileURL="dict:outputPayload" guiName="Pojo WRITER" guiX="900" guiY="20" id="BEAN_WRITER0" type="BEAN_WRITER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<object xmlns:clover="http://www.cloveretl.com/ns/xmlmapping" clover:inPort="0">
+  <cost>$0.cost</cost>
+  <costCenter>$0.costCenter</costCenter>
+  <department>$0.department</department>
+  <employeeID>$0.employeeID</employeeID>
+  <machineID>$0.machineID</machineID>
+  <plantName>$0.plantName</plantName>
+</object>]]></attr>
+<attr name="_data_format"><![CDATA[JAVA]]></attr>
+<attr name="schema"><![CDATA[<?xml version="1.0" encoding="UTF-8"?><schema-object>
+  <typed-object-ref type-ref="com.mulesoft.samples.TimeSheetForGL"/>
+  <typed-object type="int"/>
+  <typed-object type="java.lang.String"/>
+  <typed-object type="double"/>
+  <typed-object type="com.mulesoft.samples.TimeSheetForGL">
+    <typed-object-ref name="cost" type-ref="double"/>
+    <typed-object-ref name="costCenter" type-ref="java.lang.String"/>
+    <typed-object-ref name="department" type-ref="java.lang.String"/>
+    <typed-object-ref name="employeeID" type-ref="java.lang.String"/>
+    <typed-object-ref name="machineID" type-ref="int"/>
+    <typed-object-ref name="plantName" type-ref="java.lang.String"/>
+  </typed-object>
+</schema-object>
+]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Foreach 'object' -&gt; 'object'" guiX="460" guiY="20" id="FOREACH_OBJECT_OBJECT" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+//END -> DO NOT REMOVE
+output.employeeID = input.employeeID;
+output.machineID = (isnull(input.machineID) ? null : double2integer(input.machineID));
+output.plantName = input.plantName;
+output.cost = input.cost;
+output.costCenter = input.costCenter;
+output.department = input.department;
+]]></attr>
+</Node>
+<Node charset="UTF-8" enabled="enabled" fileURL="dict:inputPayload" guiName="JSON READER" guiX="20" guiY="20" id="JSON_READER0" type="JSON_READER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context xpath="/root">
+  <Context outPort="0" sequenceField="__id" xpath="object">
+    <Mapping cloverField="employeeID" trim="true" xpath="employeeID"/>
+    <Mapping cloverField="machineID" trim="true" xpath="machineID"/>
+    <Mapping cloverField="plantName" trim="true" xpath="plantName"/>
+    <Mapping cloverField="cost" trim="true" xpath="cost"/>
+    <Mapping cloverField="costCenter" trim="true" xpath="costCenter"/>
+    <Mapping cloverField="department" trim="true" xpath="department"/>
+  </Context>
+</Context>
+]]></attr>
+<attr name="_data_format"><![CDATA[JSON]]></attr>
+<attr name="jsonSchemaURL"><![CDATA[C:\MuleStudio\dotNet\MuleSoft.DotNet.Samples\Sample.json]]></attr>
+</Node>
+<Edge debugMode="true" fromNode="FOREACH_OBJECT_OBJECT:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="536a0f25-0cf3-4de6-a93e-f239c4b6ef78" outPort="Port 0 (out)" toNode="BEAN_WRITER0:0"/>
+<Edge debugMode="true" fromNode="JSON_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="984a3011-34dc-473a-855a-7360a8d4f701" outPort="Port 0 (out)" toNode="FOREACH_OBJECT_OBJECT:0"/>
+</Phase>
+</Graph>

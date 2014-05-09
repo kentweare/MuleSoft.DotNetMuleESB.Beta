@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><Graph author="kent.weare" created="Sun May 04 11:43:54 MDT 2014" description="Pojo To Pojo" guiVersion="3.4.3.P" id="1399259002306" licenseCode="Unlicensed" licenseType="Unknown" modified="Sun May 04 11:43:54 MDT 2014" modifiedBy="kent.weare" name="Pojo_To_Pojo" revision="1.0" showComponentDetails="false">
+<Global>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/object" _dataStructure="OBJECT" _id="__id" _type="Input" id="5261515c-30be-4fc9-90d5-45f6017e9110">
+<Record fieldDelimiter="," name="WorkOrderRequest" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{}/object/functionalLocation" containerType="SINGLE" label="functionalLocation" name="functionalLocation" type="string"/>
+<Field __index="1" __sourcePath="{}/object/machineID" containerType="SINGLE" label="machineID" name="machineID" type="integer"/>
+<Field __index="2" __sourcePath="{}/object/machineName" containerType="SINGLE" label="machineName" name="machineName" type="string"/>
+<Field __index="3" __sourcePath="{}/object/maintenanceType" containerType="SINGLE" label="maintenanceType" name="maintenanceType" type="string"/>
+<Field __index="4" __sourcePath="{}/object/plant" containerType="SINGLE" label="plant" name="plant" type="string"/>
+<Field __index="5" __sourcePath="{}/object/requestDate" containerType="SINGLE" label="requestDate" name="requestDate" type="date"/>
+<Field __index="6" __sourcePath="{}/object/workOrderID" containerType="SINGLE" label="workOrderID" name="workOrderID" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/object" _dataStructure="OBJECT" _id="__id" _type="Output" id="86e307db-3146-4e2f-b18a-3ea4712f8898">
+<Record fieldDelimiter="," name="WorkOrderRequestAck" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{}/object/status" containerType="SINGLE" label="status" name="status" type="boolean"/>
+<Field __index="1" __sourcePath="{}/object/workOrderID" containerType="SINGLE" label="workOrderID" name="workOrderID" type="string"/>
+</Record>
+</Metadata>
+<Dictionary>
+<Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
+<Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
+<Entry dictval.__javaType="java.lang.String" id="DictionaryEntry2" input="true" name="WorkOrderID" output="true" type="string"/>
+<Entry dictval.__javaType="java.lang.Boolean" id="DictionaryEntry3" input="true" name="status" output="true" type="boolean"/>
+</Dictionary>
+</Global>
+<Phase number="0">
+<Node enabled="enabled" fileURL="dict:inputPayload" guiName="Pojo READER" guiX="20" guiY="20" id="BEAN_READER0" type="BEAN_READER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context outPort="0" sequenceField="__id" xpath=".">
+  <Mapping cloverField="functionalLocation" trim="true" xpath="functionalLocation"/>
+  <Mapping cloverField="machineID" trim="true" xpath="machineID"/>
+  <Mapping cloverField="machineName" trim="true" xpath="machineName"/>
+  <Mapping cloverField="maintenanceType" trim="true" xpath="maintenanceType"/>
+  <Mapping cloverField="plant" trim="true" xpath="plant"/>
+  <Mapping cloverField="requestDate" trim="true" xpath="requestDate"/>
+  <Mapping cloverField="workOrderID" trim="true" xpath="workOrderID"/>
+</Context>
+]]></attr>
+<attr name="_data_format"><![CDATA[JAVA]]></attr>
+<attr name="schema"><![CDATA[<?xml version="1.0" encoding="UTF-8"?><schema-object>
+  <typed-object-ref type-ref="com.mulesoft.samples.WorkOrderRequest"/>
+  <typed-object type="int"/>
+  <typed-object type="java.lang.String"/>
+  <typed-object type="com.mulesoft.samples.WorkOrderRequest">
+    <typed-object-ref name="functionalLocation" type-ref="java.lang.String"/>
+    <typed-object-ref name="machineID" type-ref="int"/>
+    <typed-object-ref name="machineName" type-ref="java.lang.String"/>
+    <typed-object-ref name="maintenanceType" type-ref="java.lang.String"/>
+    <typed-object-ref name="plant" type-ref="java.lang.String"/>
+    <typed-object-ref name="requestDate" type-ref="java.util.Date"/>
+    <typed-object-ref name="workOrderID" type-ref="java.lang.String"/>
+  </typed-object>
+  <typed-object type="java.util.Date"/>
+</schema-object>
+]]></attr>
+</Node>
+<Node cacheInMemory="true" enabled="enabled" fileURL="dict:outputPayload" guiName="Pojo WRITER" guiX="900" guiY="20" id="BEAN_WRITER0" type="BEAN_WRITER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<object xmlns:clover="http://www.cloveretl.com/ns/xmlmapping" clover:inPort="0">
+  <status>$0.status</status>
+  <workOrderID>$0.workOrderID</workOrderID>
+</object>]]></attr>
+<attr name="_data_format"><![CDATA[JAVA]]></attr>
+<attr name="schema"><![CDATA[<?xml version="1.0" encoding="UTF-8"?><schema-object>
+  <typed-object-ref type-ref="com.mulesoft.samples.WorkOrderRequestAck"/>
+  <typed-object type="com.mulesoft.samples.WorkOrderRequestAck">
+    <typed-object-ref name="status" type-ref="boolean"/>
+    <typed-object-ref name="workOrderID" type-ref="java.lang.String"/>
+  </typed-object>
+  <typed-object type="java.lang.String"/>
+  <typed-object type="boolean"/>
+</schema-object>
+]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Foreach 'object' -&gt; 'object'" guiX="460" guiY="20" id="FOREACH_OBJECT_OBJECT" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+//END -> DO NOT REMOVE
+output.workOrderID = inputArguments.WorkOrderID;
+output.status = inputArguments.status;]]></attr>
+</Node>
+<Edge debugMode="true" fromNode="BEAN_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="5261515c-30be-4fc9-90d5-45f6017e9110" outPort="Port 0 (out)" toNode="FOREACH_OBJECT_OBJECT:0"/>
+<Edge debugMode="true" fromNode="FOREACH_OBJECT_OBJECT:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="86e307db-3146-4e2f-b18a-3ea4712f8898" outPort="Port 0 (out)" toNode="BEAN_WRITER0:0"/>
+</Phase>
+</Graph>

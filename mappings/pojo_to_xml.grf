@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><Graph author="kent.weare" created="Sun May 04 11:43:54 MDT 2014" description="Pojo To XML" guiVersion="3.4.3.P" id="1399259909355" licenseCode="Unlicensed" licenseType="Unknown" modified="Sun May 04 11:43:54 MDT 2014" modifiedBy="kent.weare" name="Pojo_To_XML" revision="1.0" showComponentDetails="false">
+<Global>
+<Metadata __index="0" __referenceCounter="2" __sourcePath="{}/object" _dataStructure="OBJECT" _id="__id" _type="Input" id="a0426fb3-f9e2-409b-8f3b-c8541faec38f">
+<Record fieldDelimiter="," name="WorkOrderRequest" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{}/object/functionalLocation" containerType="SINGLE" label="functionalLocation" name="functionalLocation" type="string"/>
+<Field __index="1" __sourcePath="{}/object/machineID" containerType="SINGLE" label="machineID" name="machineID" type="integer"/>
+<Field __index="2" __sourcePath="{}/object/machineName" containerType="SINGLE" label="machineName" name="machineName" type="string"/>
+<Field __index="3" __sourcePath="{}/object/maintenanceType" containerType="SINGLE" label="maintenanceType" name="maintenanceType" type="string"/>
+<Field __index="4" __sourcePath="{}/object/plant" containerType="SINGLE" label="plant" name="plant" type="string"/>
+<Field __index="5" __sourcePath="{}/object/requestDate" containerType="SINGLE" label="requestDate" name="requestDate" type="date"/>
+<Field __index="6" __sourcePath="{}/object/workOrderID" containerType="SINGLE" label="workOrderID" name="workOrderID" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{http://com.mulesoft.samples.WorkOrderRequest_XML=ns0}/ns0:WorkOrderRequests/WorkOrderRequest" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="4a656f8b-f52c-4124-9f36-c36fa265ebe9" _parent_id="__parent_id" _type="Output" id="f6267473-abda-4bf0-92c4-08c26125ae35">
+<Record fieldDelimiter="," name="WorkOrderRequest" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{http://com.mulesoft.samples.WorkOrderRequest_XML=ns0}/ns0:WorkOrderRequests/WorkOrderRequest/MachineName" containerType="SINGLE" label="MachineName" name="MachineName" type="string"/>
+<Field __index="1" __sourcePath="{http://com.mulesoft.samples.WorkOrderRequest_XML=ns0}/ns0:WorkOrderRequests/WorkOrderRequest/MachinedID" containerType="SINGLE" label="MachinedID" name="MachinedID" type="integer"/>
+<Field __index="2" __sourcePath="{http://com.mulesoft.samples.WorkOrderRequest_XML=ns0}/ns0:WorkOrderRequests/WorkOrderRequest/Plant" containerType="SINGLE" label="Plant" name="Plant" type="string"/>
+<Field __index="3" __sourcePath="{http://com.mulesoft.samples.WorkOrderRequest_XML=ns0}/ns0:WorkOrderRequests/WorkOrderRequest/FunctionalLocation" containerType="SINGLE" label="FunctionalLocation" name="FunctionalLocation" type="string"/>
+<Field __index="4" __sourcePath="{http://com.mulesoft.samples.WorkOrderRequest_XML=ns0}/ns0:WorkOrderRequests/WorkOrderRequest/MaintenanceType" containerType="SINGLE" label="MaintenanceType" name="MaintenanceType" type="string"/>
+<Field __index="5" __sourcePath="{http://com.mulesoft.samples.WorkOrderRequest_XML=ns0}/ns0:WorkOrderRequests/WorkOrderRequest/RequestDate" containerType="SINGLE" label="RequestDate" name="RequestDate" type="date"/>
+<Field __index="6" __sourcePath="{http://com.mulesoft.samples.WorkOrderRequest_XML=ns0}/ns0:WorkOrderRequests/WorkOrderRequest/WorkOrderID" containerType="SINGLE" label="WorkOrderID" name="WorkOrderID" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{http://com.mulesoft.samples.WorkOrderRequest_XML=ns0}/ns0:WorkOrderRequests" _dataStructure="OBJECT" _id="__id" _type="Output" id="4a656f8b-f52c-4124-9f36-c36fa265ebe9">
+<Record fieldDelimiter="," name="WorkOrderRequests" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+</Record>
+</Metadata>
+<Dictionary>
+<Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
+<Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
+</Dictionary>
+</Global>
+<Phase number="0">
+<Node enabled="enabled" fileURL="dict:inputPayload" guiName="Pojo READER" guiX="20" guiY="20" id="BEAN_READER0" type="BEAN_READER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context xpath=".">
+  <Context outPort="1" sequenceField="__id" xpath=".">
+    <Mapping cloverField="functionalLocation" trim="true" xpath="functionalLocation"/>
+    <Mapping cloverField="machineID" trim="true" xpath="machineID"/>
+    <Mapping cloverField="machineName" trim="true" xpath="machineName"/>
+    <Mapping cloverField="maintenanceType" trim="true" xpath="maintenanceType"/>
+    <Mapping cloverField="plant" trim="true" xpath="plant"/>
+    <Mapping cloverField="requestDate" trim="true" xpath="requestDate"/>
+    <Mapping cloverField="workOrderID" trim="true" xpath="workOrderID"/>
+  </Context>
+  <Context outPort="0" sequenceField="__id" xpath=".">
+    <Mapping cloverField="functionalLocation" trim="true" xpath="functionalLocation"/>
+    <Mapping cloverField="machineID" trim="true" xpath="machineID"/>
+    <Mapping cloverField="machineName" trim="true" xpath="machineName"/>
+    <Mapping cloverField="maintenanceType" trim="true" xpath="maintenanceType"/>
+    <Mapping cloverField="plant" trim="true" xpath="plant"/>
+    <Mapping cloverField="requestDate" trim="true" xpath="requestDate"/>
+    <Mapping cloverField="workOrderID" trim="true" xpath="workOrderID"/>
+  </Context>
+</Context>
+]]></attr>
+<attr name="_data_format"><![CDATA[JAVA]]></attr>
+<attr name="schema"><![CDATA[<?xml version="1.0" encoding="UTF-8"?><schema-object>
+  <typed-object-ref type-ref="com.mulesoft.samples.WorkOrderRequest"/>
+  <typed-object type="int"/>
+  <typed-object type="java.lang.String"/>
+  <typed-object type="com.mulesoft.samples.WorkOrderRequest">
+    <typed-object-ref name="functionalLocation" type-ref="java.lang.String"/>
+    <typed-object-ref name="machineID" type-ref="int"/>
+    <typed-object-ref name="machineName" type-ref="java.lang.String"/>
+    <typed-object-ref name="maintenanceType" type-ref="java.lang.String"/>
+    <typed-object-ref name="plant" type-ref="java.lang.String"/>
+    <typed-object-ref name="requestDate" type-ref="java.util.Date"/>
+    <typed-object-ref name="workOrderID" type-ref="java.lang.String"/>
+  </typed-object>
+  <typed-object type="java.util.Date"/>
+</schema-object>
+]]></attr>
+</Node>
+<Node cacheInMemory="true" charset="UTF-8" enabled="enabled" fileURL="dict:outputPayload" guiName="XML WRITER" guiX="900" guiY="20" id="EXT_XML_WRITER0" type="EXT_XML_WRITER" xmlSchemaURL=".\src\main\resources\WorkOrderRequest_XML.xsd">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<clover:element clover:name="ns0:WorkOrderRequests" xmlns:clover="http://www.cloveretl.com/ns/xmlmapping" xmlns:ns0="http://com.mulesoft.samples.WorkOrderRequest_XML" clover:inPort="0">
+  <WorkOrderRequest clover:inPort="1" clover:key="__parent_id" clover:parentKey="__id">
+    <MachineName>$1.MachineName</MachineName>
+    <MachinedID>$1.MachinedID</MachinedID>
+    <Plant>$1.Plant</Plant>
+    <FunctionalLocation>$1.FunctionalLocation</FunctionalLocation>
+    <MaintenanceType>$1.MaintenanceType</MaintenanceType>
+    <RequestDate>$1.RequestDate</RequestDate>
+    <WorkOrderID>$1.WorkOrderID</WorkOrderID>
+  </WorkOrderRequest>
+</clover:element>]]></attr>
+<attr name="_data_format"><![CDATA[XML]]></attr>
+<attr name="__rootGlobalElementName"><![CDATA[{http://com.mulesoft.samples.WorkOrderRequest_XML}WorkOrderRequests]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Foreach 'object' -&gt; 'ns0:WorkOrderRequests'" guiX="460" guiY="20" id="FOREACH_OBJECT_NS0_WORK_ORDER_REQUESTS" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+//END -> DO NOT REMOVE
+]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Foreach 'object' -&gt; 'WorkOrderRequest'" guiX="460" guiY="120" id="FOREACH_OBJECT_WORK_ORDER_REQUEST" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+output.__parent_id = input.__id;
+//END -> DO NOT REMOVE
+output.FunctionalLocation = input.functionalLocation + input.functionalLocation;
+output.MachineName = input.machineName + input.machineName;
+output.MaintenanceType = input.maintenanceType;
+output.Plant = input.plant;
+output.RequestDate = input.requestDate;
+output.WorkOrderID = input.workOrderID;
+output.MachinedID = input.machineID;]]></attr>
+</Node>
+<Edge debugMode="true" fromNode="BEAN_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="a0426fb3-f9e2-409b-8f3b-c8541faec38f" outPort="Port 0 (out)" toNode="FOREACH_OBJECT_NS0_WORK_ORDER_REQUESTS:0"/>
+<Edge debugMode="true" fromNode="BEAN_READER0:1" guiBendpoints="" id="Edge2" inPort="Port 0 (in)" metadata="a0426fb3-f9e2-409b-8f3b-c8541faec38f" outPort="Port 1 (out)" toNode="FOREACH_OBJECT_WORK_ORDER_REQUEST:0"/>
+<Edge debugMode="true" fromNode="FOREACH_OBJECT_NS0_WORK_ORDER_REQUESTS:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="4a656f8b-f52c-4124-9f36-c36fa265ebe9" outPort="Port 0 (out)" toNode="EXT_XML_WRITER0:0"/>
+<Edge debugMode="true" fromNode="FOREACH_OBJECT_WORK_ORDER_REQUEST:0" guiBendpoints="" id="Edge3" inPort="Port 1 (in)" metadata="f6267473-abda-4bf0-92c4-08c26125ae35" outPort="Port 0 (out)" toNode="EXT_XML_WRITER0:1"/>
+</Phase>
+</Graph>
