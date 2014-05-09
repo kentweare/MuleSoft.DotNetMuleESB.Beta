@@ -3,19 +3,37 @@
     <global-element name="MSMQ" type="http://www.mulesoft.org/schema/mule/msmq/config" entity-id="MSMQ#1">
         <properties>
             <property name="username" value="MuleMSMQ"/>
+            <property name="updated"/>
             <property name="name" value="MSMQ_WorkOrders"/>
             <property name="serviceUrl" value="http://localhost:9000/"/>
-            <property name="password" value="9Phoenixsi!ver28"/>
+            <property name="password" value="123Pa$$word321"/>
             <property name="auxiliary;index" value="1"/>
-            <property name="impersonateUser"/>
-            <property-collection name="@http://www.mulesoft.org/schema/mule/msmq/connection-pooling-profile;0">
+            <property name="impersonateUser" value="false"/>
+            <property-collection name="">
+                <property name="blocking" value="true"/>
+                <property name="d" value=""/>
+                <property name="customReconnection" value="false"/>
+                <property name="count" value="2"/>
+                <property name="standardReconnection" value="false"/>
+                <property name="class" value=""/>
+                <property name="frequency" value="2000"/>
+                <property name="reconnectForever" value="false"/>
+                <property name="noReconnection" value="true"/>
+            </property-collection>
+            <property-collection name="@http://www.mulesoft.org/schema/mule/msmq/connection-pooling-profile;1960353734">
                 <property name="exhaustedAction" value="WHEN_EXHAUSTED_GROW"/>
+                <property name="maxActive" value="5"/>
+                <property name="maxIdle" value="5"/>
+                <property name="poolingProfileLabel" value=""/>
+                <property name="evictionCheckIntervalMillis" value="-1"/>
+                <property name="maxWait" value="5"/>
+                <property name="minEvictionMillis" value="1800000"/>
                 <property name="isProcessed$$$$ " value="true"/>
-                <property name="auxiliary;wrapIn" value="2"/>
                 <property name="auxiliary;index" value="2"/>
                 <property name="initialisationPolicy" value="INITIALISE_ONE"/>
             </property-collection>
         </properties>
+        <description></description>
     </global-element>
     <global-element name="pojo_to_pojo" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/config" entity-id="DataMapper#1">
         <properties>
@@ -38,7 +56,7 @@
             <property name="auxiliary;index" value="5"/>
         </properties>
     </global-element>
-    <flow SubFlow="false" name="WorkOrderProcessing_ReceiveWorkOrderRequest" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="d0679951-2c0b-43f2-a744-706ba8517342">
+    <flow SubFlow="false" name="WorkOrderProcessing_ReceiveWorkOrderRequest" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="cb19b2e0-2c76-4714-a1bc-e659751957d4">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -81,58 +99,21 @@
             <pattern name="SOAP" type="http://www.mulesoft.org/schema/mule/cxf/soapComponent" entity-id="SOAP#1">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
-                    <property name="wsdlLocation" value=""/>
-                    <property name="port" value=""/>
-                    <property name="validationEnabled" value="false"/>
+                    <property name="port"/>
+                    <property name="wsdlLocation"/>
                     <property name="serviceClass" value="com.mulesoft.samples.IProcessWorkOrder"/>
-                    <property name="updated"/>
-                    <property name="bindingId" value=""/>
-                    <property name="service" value=""/>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/cxf/jaxws-service"/>
-                    <property name="mtomEnabled" value="false"/>
-                    <property name="soapVersion" value="1.1"/>
-                    <property name="enableMuleSoapHeaders" value="true"/>
-                    <property name="configuration-ref" value=""/>
+                    <property name="configuration-ref"/>
+                    <property name="namespace"/>
+                    <property name="validationEnabled"/>
+                    <property name="bindingId"/>
+                    <property name="onException"/>
+                    <property name="service"/>
+                    <property name="mtomEnabled"/>
+                    <property name="enableMuleSoapHeaders"/>
+                    <property name="soapVersion"/>
                     <property name="auxiliary;index" value="8"/>
-                    <property name="namespace" value=""/>
-                    <property-collection name="">
-                        <property name="auxiliary;erased;DATABINDING" value="true"/>
-                        <property name="DATABINDING" value=""/>
-                        <property name="class" value=""/>
-                        <property name="propertiesLabel" value=""/>
-                    </property-collection>
-                    <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/schemaLocations;589269159">
-                        <property name="isProcessed$$$$ " value="true"/>
-                    </property-collection>
-                    <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/ws-security-full;1987035608">
-                        <property name="isProcessed$$$$ " value="true"/>
-                        <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/ws-config;1482007640">
-                            <property name="isProcessed$$$$ " value="true"/>
-                        </property-collection>
-                        <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/ws-custom-validator;1397445600">
-                            <property name="isProcessed$$$$ " value="true"/>
-                            <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/bst-token-validator;2118306738">
-<property name="isProcessed$$$$ " value="true"/>
-                            </property-collection>
-                            <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/saml1-token-validator;2097820478">
-<property name="isProcessed$$$$ " value="true"/>
-                            </property-collection>
-                            <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/saml2-token-validator;682257300">
-<property name="isProcessed$$$$ " value="true"/>
-                            </property-collection>
-                            <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/signature-token-validator;400567148">
-<property name="isProcessed$$$$ " value="true"/>
-                            </property-collection>
-                            <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/timestamp-token-validator;1283249767">
-<property name="isProcessed$$$$ " value="true"/>
-                            </property-collection>
-                            <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/username-token-validator;1587067574">
-<property name="isProcessed$$$$ " value="true"/>
-                            </property-collection>
-                        </property-collection>
-                    </property-collection>
                 </properties>
-                <description></description>
             </pattern>
             <pattern name="Work Order Id" type="http://www.mulesoft.org/schema/mule/core/variable-transformer" entity-id="Variable#1">
                 <graphicalData x="0" y="0" width="0" height="0"/>
@@ -204,7 +185,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="WorkOrderProcessing_SendToMSMQ" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="82cf2a72-36b0-44aa-871a-b2aa4acec4ce">
+    <flow SubFlow="false" name="WorkOrderProcessing_SendToMSMQ" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="61fae786-3fe4-4594-8fe4-1c1a83ca24dc">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2" value="synchronous"/>
@@ -227,20 +208,22 @@
             <pattern name="MSMQ" type="http://www.mulesoft.org/schema/mule/msmq/msmq-connector" entity-id="MSMQ#2">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
-                    <property name=""/>
-                    <property name="username"/>
+                    <property name="" value=""/>
+                    <property name="username" value=""/>
+                    <property name="updated"/>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/msmq/send"/>
-                    <property name="queueAddress" value="ml-kweare-w7-re\private$\WorkOrdersOutbound"/>
+                    <property name="queueAddress" value=".\private$\WorkOrdersOutbound"/>
                     <property name="message-ref" value="#[message.payload]"/>
+                    <property name="password" value=""/>
                     <property name="config-ref" value="MSMQ_WorkOrders"/>
-                    <property name="password"/>
                     <property name="auxiliary;index" value="19"/>
-                    <property name="impersonateUser"/>
+                    <property name="impersonateUser" value="false"/>
                 </properties>
+                <description></description>
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="WorkOrderProcessing_ReceiveCompletedWorkOrder" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="e8388b9f-eb63-4995-a0e1-bb8ac093376e">
+    <flow SubFlow="false" name="WorkOrderProcessing_ReceiveCompletedWorkOrder" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="8ab16e01-85b9-4399-be3f-099e55a4c1e3">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -252,7 +235,7 @@
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#3">
             <graphicalData x="0" y="0" width="0" height="0"/>
             <endpoint direction="Inbound" message-exchange-pattern="OneWay" name="MSMQ" type="http://www.mulesoft.org/schema/mule/msmq/endpoint" entity-id="MSMQ (Streaming)#1">
-                <graphicalData x="21" y="423" width="68" height="69"/>
+                <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="pollFrequency"/>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/msmq/get-message"/>
@@ -261,9 +244,10 @@
                     <property name="exchange-pattern" value="one-way"/>
                     <property name="auxiliary;index" value="21"/>
                 </properties>
+                <description></description>
             </endpoint>
             <pattern name="Logger" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#2">
-                <graphicalData x="149" y="423" width="68" height="69"/>
+                <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="message" value="After Queue #[message.payload]"/>
                     <property name="category"/>
@@ -272,7 +256,7 @@
                 </properties>
             </pattern>
             <pattern name="Byte Array to String" type="http://www.mulesoft.org/schema/mule/core/byte-array-to-string-transformer" entity-id="Byte Array to String#1">
-                <graphicalData x="277" y="423" width="116" height="69"/>
+                <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="returnClass"/>
                     <property name="ignoreBadInput"/>
@@ -280,10 +264,9 @@
                     <property name="mimeType"/>
                     <property name="auxiliary;index" value="23"/>
                 </properties>
-                <description></description>
             </pattern>
             <pattern name="XML To Pojo" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/data-mapper-connector" entity-id="DataMapper#6">
-                <graphicalData x="453" y="423" width="82" height="69"/>
+                <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="returnClass"/>
                     <property name="input-ref"/>
@@ -295,38 +278,24 @@
                 </properties>
             </pattern>
             <pattern name="SOAP" type="http://www.mulesoft.org/schema/mule/cxf/soapComponent" entity-id="SOAP#2">
-                <graphicalData x="595" y="423" width="68" height="171"/>
+                <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="port" value="BasicHttpBinding_IWorkOrderCompletion"/>
-                    <property name="wsdlLocation" value=""/>
+                    <property name="wsdlLocation"/>
+                    <property name="operation" value="CompleteWorkOrder"/>
                     <property name="serviceClass" value="com.mulesoft.samples.IWorkOrderCompletion"/>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/cxf/jaxws-client"/>
-                    <property name="configuration-ref" value=""/>
-                    <property name="operation" value="CompleteWorkOrder"/>
-                    <property name="updated"/>
-                    <property name="mtomEnabled" value="false"/>
-                    <property name="enableMuleSoapHeaders" value="true"/>
-                    <property name="soapVersion" value="1.1"/>
-                    <property name="clientClass" value=""/>
-                    <property name="decoupledEndpoint" value=""/>
+                    <property name="mtomEnabled"/>
+                    <property name="enableMuleSoapHeaders"/>
+                    <property name="soapVersion"/>
+                    <property name="clientClass"/>
+                    <property name="configuration-ref"/>
+                    <property name="decoupledEndpoint"/>
                     <property name="auxiliary;index" value="25"/>
-                    <property-collection name="">
-                        <property name="auxiliary;erased;DATABINDING" value="true"/>
-                        <property name="DATABINDING" value=""/>
-                        <property name="class" value=""/>
-                        <property name="propertiesLabel" value=""/>
-                    </property-collection>
-                    <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/ws-security-without-token-validator;494035169">
-                        <property name="isProcessed$$$$ " value="true"/>
-                        <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/ws-config;681827023">
-                            <property name="isProcessed$$$$ " value="true"/>
-                        </property-collection>
-                    </property-collection>
                 </properties>
-                <description></description>
             </pattern>
             <endpoint direction="Outbound" message-exchange-pattern="RequestResponse" name="HTTP" type="http://www.mulesoft.org/schema/mule/http/endpoint" entity-id="HTTP#2">
-                <graphicalData x="723" y="423" width="68" height="69"/>
+                <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="port" value="8082"/>
                     <property name="host" value="localhost"/>
@@ -353,7 +322,6 @@
                     <property name="auxiliary;index" value="26"/>
                     <property name="connector-ref"/>
                 </properties>
-                <description></description>
             </endpoint>
         </lane>
     </flow>

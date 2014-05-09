@@ -39,7 +39,7 @@
 <Node enabled="enabled" fileURL="dict:inputPayload" guiName="Pojo READER" guiX="20" guiY="20" id="BEAN_READER0" type="BEAN_READER">
 <attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Context xpath=".">
-  <Context outPort="1" sequenceField="__id" xpath=".">
+  <Context outPort="0" sequenceField="__id" xpath=".">
     <Mapping cloverField="functionalLocation" trim="true" xpath="functionalLocation"/>
     <Mapping cloverField="machineID" trim="true" xpath="machineID"/>
     <Mapping cloverField="machineName" trim="true" xpath="machineName"/>
@@ -48,7 +48,7 @@
     <Mapping cloverField="requestDate" trim="true" xpath="requestDate"/>
     <Mapping cloverField="workOrderID" trim="true" xpath="workOrderID"/>
   </Context>
-  <Context outPort="0" sequenceField="__id" xpath=".">
+  <Context outPort="1" sequenceField="__id" xpath=".">
     <Mapping cloverField="functionalLocation" trim="true" xpath="functionalLocation"/>
     <Mapping cloverField="machineID" trim="true" xpath="machineID"/>
     <Mapping cloverField="machineName" trim="true" xpath="machineName"/>
