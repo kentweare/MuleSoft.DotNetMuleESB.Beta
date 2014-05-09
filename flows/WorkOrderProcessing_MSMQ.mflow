@@ -20,7 +20,7 @@
                 <property name="reconnectForever" value="false"/>
                 <property name="noReconnection" value="true"/>
             </property-collection>
-            <property-collection name="@http://www.mulesoft.org/schema/mule/msmq/connection-pooling-profile;1960353734">
+            <property-collection name="@http://www.mulesoft.org/schema/mule/msmq/connection-pooling-profile;2110203426">
                 <property name="exhaustedAction" value="WHEN_EXHAUSTED_GROW"/>
                 <property name="maxActive" value="5"/>
                 <property name="maxIdle" value="5"/>
@@ -38,25 +38,25 @@
     <global-element name="pojo_to_pojo" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/config" entity-id="DataMapper#1">
         <properties>
             <property name="name" value="pojo_to_pojo"/>
-            <property name="transformationGraphPath" value="pojo_to_pojo.grf"/>
             <property name="auxiliary;index" value="3"/>
+            <property name="transformationGraphPath" value="pojo_to_pojo.grf"/>
         </properties>
     </global-element>
     <global-element name="pojo_to_xml" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/config" entity-id="DataMapper#2">
         <properties>
             <property name="name" value="pojo_to_xml"/>
-            <property name="transformationGraphPath" value="pojo_to_xml.grf"/>
             <property name="auxiliary;index" value="4"/>
+            <property name="transformationGraphPath" value="pojo_to_xml.grf"/>
         </properties>
     </global-element>
     <global-element name="xml_to_pojo" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/config" entity-id="DataMapper#3">
         <properties>
             <property name="name" value="xml_to_pojo"/>
-            <property name="transformationGraphPath" value="xml_to_pojo.grf"/>
             <property name="auxiliary;index" value="5"/>
+            <property name="transformationGraphPath" value="xml_to_pojo.grf"/>
         </properties>
     </global-element>
-    <flow SubFlow="false" name="WorkOrderProcessing_ReceiveWorkOrderRequest" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="cb19b2e0-2c76-4714-a1bc-e659751957d4">
+    <flow SubFlow="false" name="WorkOrderProcessing_ReceiveWorkOrderRequest" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="0c6fcd39-4269-4fb0-9d9f-c80c06e9eeda">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -82,17 +82,17 @@
                     <property name="exchange-pattern" value="request-response"/>
                     <property name="tracking:enable-default-events"/>
                     <property name="ref"/>
-                    <property name="httpLabel"/>
                     <property name="transformer-refs"/>
+                    <property name="httpLabel"/>
                     <property name="address"/>
-                    <property name="encoding"/>
                     <property name="path" value="ProcessWorkOrder"/>
+                    <property name="encoding"/>
                     <property name="responseTransformer-refs"/>
                     <property name="method"/>
                     <property name="user"/>
-                    <property name="mimeType"/>
-                    <property name="responseTimeout"/>
                     <property name="auxiliary;index" value="7"/>
+                    <property name="responseTimeout"/>
+                    <property name="mimeType"/>
                     <property name="connector-ref"/>
                 </properties>
             </endpoint>
@@ -110,8 +110,8 @@
                     <property name="onException"/>
                     <property name="service"/>
                     <property name="mtomEnabled"/>
-                    <property name="enableMuleSoapHeaders"/>
                     <property name="soapVersion"/>
+                    <property name="enableMuleSoapHeaders"/>
                     <property name="auxiliary;index" value="8"/>
                 </properties>
             </pattern>
@@ -119,8 +119,8 @@
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="variableName" value="WorkOrder"/>
-                    <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/core/set-variable"/>
                     <property name="value" value="#[message.payload.workOrderID]"/>
+                    <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/core/set-variable"/>
                     <property name="auxiliary;index" value="9"/>
                 </properties>
             </pattern>
@@ -128,11 +128,11 @@
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="returnClass"/>
-                    <property name="input-ref"/>
                     <property name="stream"/>
+                    <property name="input-ref"/>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/ee/data-mapper/transform"/>
-                    <property name="config-ref" value="pojo_to_xml"/>
                     <property name="pipeSize"/>
+                    <property name="config-ref" value="pojo_to_xml"/>
                     <property name="auxiliary;index" value="10"/>
                 </properties>
             </pattern>
@@ -147,8 +147,8 @@
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="variableName" value="Status"/>
-                    <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/core/set-variable"/>
                     <property name="value" value="#[true]"/>
+                    <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/core/set-variable"/>
                     <property name="auxiliary;index" value="12"/>
                 </properties>
             </pattern>
@@ -156,36 +156,36 @@
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="returnClass"/>
-                    <property name="input-ref"/>
                     <property name="stream"/>
+                    <property name="input-ref"/>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/ee/data-mapper/transform"/>
-                    <property name="config-ref" value="pojo_to_pojo"/>
                     <property name="pipeSize"/>
+                    <property name="config-ref" value="pojo_to_pojo"/>
                     <property name="auxiliary;index" value="13"/>
                     <property-collection name="@http://www.mulesoft.org/schema/mule/ee/data-mapper/input-arguments;0">
                         <property name="isProcessed$$$$ " value="true"/>
-                        <property name="auxiliary;wrapIn" value="14"/>
                         <property name="auxiliary;index" value="14"/>
+                        <property name="auxiliary;wrapIn" value="14"/>
                         <property-collection name="@http://www.mulesoft.org/schema/mule/ee/data-mapper/input-argument;1">
                             <property name="value" value="#[flowVars['WorkOrder']]"/>
                             <property name="isProcessed$$$$ " value="true"/>
-                            <property name="auxiliary;wrapIn" value="15"/>
-                            <property name="auxiliary;index" value="15"/>
                             <property name="key" value="WorkOrderID"/>
+                            <property name="auxiliary;index" value="15"/>
+                            <property name="auxiliary;wrapIn" value="15"/>
                         </property-collection>
                         <property-collection name="@http://www.mulesoft.org/schema/mule/ee/data-mapper/input-argument;2">
                             <property name="value" value="#[flowVars['status']]"/>
                             <property name="isProcessed$$$$ " value="true"/>
-                            <property name="auxiliary;wrapIn" value="16"/>
-                            <property name="auxiliary;index" value="16"/>
                             <property name="key" value="status"/>
+                            <property name="auxiliary;index" value="16"/>
+                            <property name="auxiliary;wrapIn" value="16"/>
                         </property-collection>
                     </property-collection>
                 </properties>
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="WorkOrderProcessing_SendToMSMQ" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="61fae786-3fe4-4594-8fe4-1c1a83ca24dc">
+    <flow SubFlow="false" name="WorkOrderProcessing_SendToMSMQ" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="d4117ee0-04fe-4991-b54e-dc69a3c56cbb">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2" value="synchronous"/>
@@ -208,22 +208,21 @@
             <pattern name="MSMQ" type="http://www.mulesoft.org/schema/mule/msmq/msmq-connector" entity-id="MSMQ#2">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
-                    <property name="" value=""/>
-                    <property name="username" value=""/>
-                    <property name="updated"/>
+                    <property name=""/>
+                    <property name="username"/>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/msmq/send"/>
                     <property name="queueAddress" value=".\private$\WorkOrdersOutbound"/>
                     <property name="message-ref" value="#[message.payload]"/>
-                    <property name="password" value=""/>
+                    <property name="password"/>
                     <property name="config-ref" value="MSMQ_WorkOrders"/>
                     <property name="auxiliary;index" value="19"/>
-                    <property name="impersonateUser" value="false"/>
+                    <property name="impersonateUser"/>
                 </properties>
                 <description></description>
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="WorkOrderProcessing_ReceiveCompletedWorkOrder" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="8ab16e01-85b9-4399-be3f-099e55a4c1e3">
+    <flow SubFlow="false" name="WorkOrderProcessing_ReceiveCompletedWorkOrder" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="35f527d7-e08e-49b7-a0e3-f4d2395804bc">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -241,10 +240,9 @@
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/msmq/get-message"/>
                     <property name="queueAddress" value=".\private$\WorkOrderInbound"/>
                     <property name="config-ref" value="MSMQ_WorkOrders"/>
-                    <property name="exchange-pattern" value="one-way"/>
                     <property name="auxiliary;index" value="21"/>
+                    <property name="exchange-pattern" value="one-way"/>
                 </properties>
-                <description></description>
             </endpoint>
             <pattern name="Logger" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#2">
                 <graphicalData x="0" y="0" width="0" height="0"/>
@@ -261,37 +259,37 @@
                     <property name="returnClass"/>
                     <property name="ignoreBadInput"/>
                     <property name="encoding"/>
-                    <property name="mimeType"/>
                     <property name="auxiliary;index" value="23"/>
+                    <property name="mimeType"/>
                 </properties>
             </pattern>
             <pattern name="XML To Pojo" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/data-mapper-connector" entity-id="DataMapper#6">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="returnClass"/>
-                    <property name="input-ref"/>
                     <property name="stream"/>
+                    <property name="input-ref"/>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/ee/data-mapper/transform"/>
-                    <property name="config-ref" value="xml_to_pojo"/>
                     <property name="pipeSize"/>
+                    <property name="config-ref" value="xml_to_pojo"/>
                     <property name="auxiliary;index" value="24"/>
                 </properties>
             </pattern>
             <pattern name="SOAP" type="http://www.mulesoft.org/schema/mule/cxf/soapComponent" entity-id="SOAP#2">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
-                    <property name="port" value="BasicHttpBinding_IWorkOrderCompletion"/>
                     <property name="wsdlLocation"/>
-                    <property name="operation" value="CompleteWorkOrder"/>
+                    <property name="port" value="BasicHttpBinding_IWorkOrderCompletion"/>
                     <property name="serviceClass" value="com.mulesoft.samples.IWorkOrderCompletion"/>
+                    <property name="operation" value="CompleteWorkOrder"/>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/cxf/jaxws-client"/>
                     <property name="mtomEnabled"/>
-                    <property name="enableMuleSoapHeaders"/>
                     <property name="soapVersion"/>
-                    <property name="clientClass"/>
+                    <property name="enableMuleSoapHeaders"/>
                     <property name="configuration-ref"/>
-                    <property name="decoupledEndpoint"/>
+                    <property name="clientClass"/>
                     <property name="auxiliary;index" value="25"/>
+                    <property name="decoupledEndpoint"/>
                 </properties>
             </pattern>
             <endpoint direction="Outbound" message-exchange-pattern="RequestResponse" name="HTTP" type="http://www.mulesoft.org/schema/mule/http/endpoint" entity-id="HTTP#2">
@@ -309,17 +307,17 @@
                     <property name="exchange-pattern" value="request-response"/>
                     <property name="tracking:enable-default-events"/>
                     <property name="ref"/>
-                    <property name="httpLabel"/>
                     <property name="transformer-refs"/>
+                    <property name="httpLabel"/>
                     <property name="address"/>
-                    <property name="encoding"/>
                     <property name="path" value="WorkOrderCompletion"/>
+                    <property name="encoding"/>
                     <property name="responseTransformer-refs"/>
                     <property name="method" value="POST"/>
                     <property name="user"/>
-                    <property name="mimeType"/>
-                    <property name="responseTimeout"/>
                     <property name="auxiliary;index" value="26"/>
+                    <property name="responseTimeout"/>
+                    <property name="mimeType"/>
                     <property name="connector-ref"/>
                 </properties>
             </endpoint>
