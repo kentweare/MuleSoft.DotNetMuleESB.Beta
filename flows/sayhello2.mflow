@@ -3,15 +3,16 @@
     <global-element name="Dot Net Module" type="http://www.mulesoft.org/schema/mule/dotnet/config" entity-id="Dot Net Module#1">
         <properties>
             <property name="assemblyType" value="MuleSoft.DotNet.HelloWorld.SayHelloWorld"/>
+            <property name="scope" value="Singleton"/>
             <property name="updated"/>
             <property name="name" value="Dot_Net_Module_SayHello"/>
             <property name="auxiliary;index" value="1"/>
-            <property name="assemblyName" value="MuleSoft.DotNet.HelloWorld"/>
             <property name="assemblyPath" value="C:\MuleStudio\dotNet\MuleSoft.DotNet.Samples\MuleSoft.DotNet.HelloWorld\bin\Debug\MuleSoft.DotNet.HelloWorld.dll"/>
+            <property name="assemblyName" value="MuleSoft.DotNet.HelloWorld"/>
         </properties>
         <description></description>
     </global-element>
-    <flow SubFlow="false" name="SayHello2Flow1" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="ff44aff4-3c6d-4711-af57-3eb7caf6434d">
+    <flow SubFlow="false" name="SayHello2Flow1" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="7b0fa345-0538-47b5-8d64-ca5ad35086ac">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -37,25 +38,25 @@
                     <property name="exchange-pattern" value="request-response"/>
                     <property name="tracking:enable-default-events"/>
                     <property name="ref"/>
-                    <property name="transformer-refs"/>
                     <property name="httpLabel"/>
+                    <property name="transformer-refs"/>
                     <property name="address"/>
-                    <property name="path" value="helloworld"/>
                     <property name="encoding"/>
+                    <property name="path" value="helloworld"/>
                     <property name="responseTransformer-refs"/>
                     <property name="method"/>
                     <property name="user"/>
-                    <property name="auxiliary;index" value="3"/>
-                    <property name="responseTimeout"/>
                     <property name="mimeType"/>
+                    <property name="responseTimeout"/>
+                    <property name="auxiliary;index" value="3"/>
                     <property name="connector-ref"/>
                 </properties>
-                <description></description>
             </endpoint>
             <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#1">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
-                    <property name="value" value="#[&quot;{\&quot;input\&quot;:\&quot;&quot; + message.inboundProperties[&quot;input&quot;] + &quot;\&quot;}&quot;]"/>
+                    <property name="updated"/>
+                    <property name="value" value="#[ message.inboundProperties[&quot;input&quot;] ]"/>
                     <property name="auxiliary;index" value="4"/>
                 </properties>
                 <description></description>
@@ -64,8 +65,8 @@
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/dotnet/execute"/>
-                    <property name="methodName" value="SayHello"/>
                     <property name="config-ref" value="Dot_Net_Module_SayHello"/>
+                    <property name="methodName" value="SayHello"/>
                     <property name="auxiliary;index" value="5"/>
                 </properties>
                 <description></description>

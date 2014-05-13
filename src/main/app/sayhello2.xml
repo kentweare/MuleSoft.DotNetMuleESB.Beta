@@ -4,10 +4,10 @@
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/dotnet http://www.mulesoft.org/schema/mule/dotnet/1.0-SNAPSHOT/mule-dotnet.xsd">
-    <dotnet:config name="Dot_Net_Module_SayHello" assemblyType="MuleSoft.DotNet.HelloWorld.SayHelloWorld" assemblyName="MuleSoft.DotNet.HelloWorld" assemblyPath="C:\MuleStudio\dotNet\MuleSoft.DotNet.Samples\MuleSoft.DotNet.HelloWorld\bin\Debug\MuleSoft.DotNet.HelloWorld.dll" doc:name="Dot Net Module"/>
+    <dotnet:config name="Dot_Net_Module_SayHello" assemblyType="MuleSoft.DotNet.HelloWorld.SayHelloWorld" assemblyName="MuleSoft.DotNet.HelloWorld" assemblyPath="C:\MuleStudio\dotNet\MuleSoft.DotNet.Samples\MuleSoft.DotNet.HelloWorld\bin\Debug\MuleSoft.DotNet.HelloWorld.dll" doc:name="Dot Net Module" scope="Singleton"/>
     <flow name="SayHello2Flow1" doc:name="SayHello2Flow1">
         <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8096" path="helloworld" doc:name="HTTP"/>
-        <set-payload value="#[&quot;{\&quot;input\&quot;:\&quot;&quot; + message.inboundProperties[&quot;input&quot;] + &quot;\&quot;}&quot;]" doc:name="Set Payload"/>
+        <set-payload value="#[ message.inboundProperties[&quot;input&quot;] ]" doc:name="Set Payload"/>
         <dotnet:execute config-ref="Dot_Net_Module_SayHello" methodName="SayHello" doc:name="Dot Net Module"/>
     </flow>
 </mule>

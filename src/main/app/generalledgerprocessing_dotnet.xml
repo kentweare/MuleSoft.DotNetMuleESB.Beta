@@ -10,7 +10,7 @@ http://www.mulesoft.org/schema/mule/dotnet http://www.mulesoft.org/schema/mule/d
 http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd
 http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
 http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd">
-    <dotnet:config name="Dot_Net_Module" assemblyType="MuleSoft.DotNet.BusinessLogic.GeneralLedgerHelper" assemblyName="MuleSoft.DotNet.BusinessLogic" assemblyPath="C:\MuleStudio\dotNet\MuleSoft.DotNet.Samples\MuleSoft.DotNet.BusinessLogic\bin\Debug\MuleSoft.DotNet.BusinessLogic.dll" doc:name="Dot Net Module"/>
+    <dotnet:config name="Dot_Net_Module" assemblyType="MuleSoft.DotNet.BusinessLogic.GeneralLedgerHelper" assemblyName="MuleSoft.DotNet.BusinessLogic" assemblyPath="C:\MuleStudio\dotNet\MuleSoft.DotNet.Samples\MuleSoft.DotNet.BusinessLogic\bin\Debug\MuleSoft.DotNet.BusinessLogic.dll" doc:name="Dot Net Module" scope="Singleton"/>
     <data-mapper:config name="json_to_pojo_1" transformationGraphPath="json_to_pojo_1.grf" doc:name="json_to_pojo_1"/>
     <data-mapper:config name="pojo_to_pojo_1" transformationGraphPath="pojo_to_pojo_1.grf" doc:name="pojo_to_pojo_1"/>
     <flow name="GeneralLedgerProcessing_DotNetFlow1" doc:name="GeneralLedgerProcessing_DotNetFlow1" processingStrategy="synchronous">
