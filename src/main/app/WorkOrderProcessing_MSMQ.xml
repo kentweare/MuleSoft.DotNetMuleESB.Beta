@@ -31,10 +31,10 @@ http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/fil
     </flow>
     <flow name="WorkOrderProcessing_SendToMSMQ" doc:name="WorkOrderProcessing_SendToMSMQ" processingStrategy="synchronous">
         <logger message="Before Queue #[message.payload]" level="INFO" doc:name="Logger"/>
-        <msmq:send config-ref="MSMQ_WorkOrders" queueAddress=".\private$\WorkOrdersOutbound" message-ref="#[message.payload]" doc:name="MSMQ"/>
+        <msmq:send config-ref="MSMQ_WorkOrders" queueAddress=".\private$\WorkOrdersOutbound" doc:name="MSMQ"/>
     </flow>
     <flow name="WorkOrderProcessing_ReceiveCompletedWorkOrder" doc:name="WorkOrderProcessing_ReceiveCompletedWorkOrder">
-        <msmq:get-message config-ref="MSMQ_WorkOrders" queueAddress=".\private$\WorkOrderInbound" doc:name="MSMQ"/>
+        <msmq:get-message config-ref="MSMQ_WorkOrders" queueAddress=".\private$\WorkOrderInbound" doc:name="MSMQ (Streaming)"/>
         <logger message="After Queue #[message.payload]" level="INFO" doc:name="Logger"/>
         <byte-array-to-string-transformer doc:name="Byte Array to String"/>
         <data-mapper:transform config-ref="xml_to_pojo" doc:name="XML To Pojo"/>

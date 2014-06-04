@@ -4,13 +4,11 @@
         <properties>
             <property name="assemblyType" value="MuleSoft.DotNet.BusinessLogic.GeneralLedgerHelper"/>
             <property name="scope" value="Singleton"/>
-            <property name="updated"/>
             <property name="name" value="Dot_Net_Module"/>
             <property name="auxiliary;index" value="1"/>
-            <property name="assemblyName" value="MuleSoft.DotNet.BusinessLogic"/>
             <property name="assemblyPath" value="C:\MuleStudio\dotNet\MuleSoft.DotNet.Samples\MuleSoft.DotNet.BusinessLogic\bin\Debug\MuleSoft.DotNet.BusinessLogic.dll"/>
+            <property name="assemblyName" value="MuleSoft.DotNet.BusinessLogic"/>
         </properties>
-        <description></description>
     </global-element>
     <global-element name="json_to_pojo_1" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/config" entity-id="DataMapper#1">
         <properties>
@@ -26,7 +24,7 @@
             <property name="transformationGraphPath" value="pojo_to_pojo_1.grf"/>
         </properties>
     </global-element>
-    <flow SubFlow="false" name="GeneralLedgerProcessing_DotNetFlow1" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="e05aedaa-279e-4903-b865-d54338c3158e">
+    <flow SubFlow="false" name="GeneralLedgerProcessing_DotNetFlow1" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="dda29c7c-4c10-4b69-a88a-3b11ff8d62ff">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2" value="synchronous"/>
@@ -65,6 +63,7 @@
                     <property name="mimeType"/>
                     <property name="connector-ref"/>
                 </properties>
+                <description></description>
             </endpoint>
             <pattern name="SOAP" type="http://www.mulesoft.org/schema/mule/cxf/soapComponent" entity-id="SOAP#1">
                 <graphicalData x="0" y="0" width="0" height="0"/>
@@ -147,16 +146,17 @@
                     <property name="mimeType"/>
                 </properties>
             </pattern>
-            <pattern name="Flow Reference" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="Flow Reference#1">
+            <pattern name="Call Sub Flow Service" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="Flow Reference#1">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="name" value="GeneralLedgerProcessing_DotNetFlow2"/>
                     <property name="auxiliary;index" value="13"/>
                 </properties>
+                <description></description>
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="GeneralLedgerProcessing_DotNetFlow2" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="865ae324-0e7c-4230-8493-f321e6325731">
+    <flow SubFlow="false" name="GeneralLedgerProcessing_DotNetFlow2" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="6e583f01-a827-4390-8e1b-bcdc8b7ac583">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>

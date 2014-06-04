@@ -23,7 +23,7 @@ http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/cu
             <data-mapper:transform config-ref="pojo_to_pojo_1" doc:name="Pojo To Pojo"/>
         </response>
         <json:object-to-json-transformer doc:name="Object to JSON"/>
-        <flow-ref name="GeneralLedgerProcessing_DotNetFlow2" doc:name="Flow Reference"/>
+        <flow-ref name="GeneralLedgerProcessing_DotNetFlow2" doc:name="Call Sub Flow Service"/>
     </flow>
     <flow name="GeneralLedgerProcessing_DotNetFlow2" doc:name="GeneralLedgerProcessing_DotNetFlow2">
         <logger message="#[message.payload]" level="INFO" doc:name="Logger"/>
